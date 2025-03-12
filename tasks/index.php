@@ -11,8 +11,9 @@
     <div class="container">
         <h1>Task List</h1>
         
-        <a href="create.php">Add New Task</a>
-        
+        <a href="create.php">Add New Task</a><br>
+        <a href="overview.php">View Incomplete Tasks</a> <!-- Link to the new overview page -->
+
         <?php
         // Include the configuration file
         require_once '../backend/config.php';
@@ -39,3 +40,4 @@
 
 </body>
 </html>
+
