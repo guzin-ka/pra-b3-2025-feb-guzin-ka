@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    <title>Add New Task</title>
+    <title>New Task</title>
     <?php require_once '../head.php'; ?>
 </head>
 
 <body>
     
     <div class="container">
-        <h1>Add New Task</h1>
+        <h1>New Task</h1>
         
         <form action="create.php" method="POST">
             <div class="form-group">
@@ -31,20 +31,20 @@
                     <option value="green">Green</option>
                 </select>
             </div>
-            <button type="submit" name="submit" class="btn btn-primary">Add Task</button>
+            <button type="submit" name="submit" class="btn btn-primary">Add</button>
         </form>
 
         <?php
-        // Include tasksController
-        require_once 'tasksController.php';
+        require_once 'tasksController.php'; // Controller loading
 
         if (isset($_POST['submit'])) {
-            $taskController = new TasksController();
-            $taskController->createTask($_POST);
+            $taskController = new TasksController(); // Create object
+            $taskController->createTask($_POST); // Create task
         }
         ?>
     </div>
 
 </body>
 </html>
+
 

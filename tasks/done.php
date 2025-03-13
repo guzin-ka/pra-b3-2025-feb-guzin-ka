@@ -9,23 +9,23 @@
 <body>
     
     <div class="container">
-        <h1>Task Overview (Incomplete Tasks)</h1>
+        <h1>Done Tasks</h1>
         
-        <a href="index.php">Back to Task List</a>
+        <a href="index.php">Back to task list</a>
 
         <?php
-        // Include database configuration
+        // Database configuration
         require_once '../backend/config.php';
 
         try {
             $conn = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            // Query to get tasks where status is not 'done'
-            $stmt = $conn->prepare("SELECT * FROM taken WHERE status <> 'done'");
+            // Fetch tasks
+            $stmt = $conn->prepare("SELECT * FROM taken WHERE status = 'done'");
             $stmt->execute();
             
-            // Check if there are tasks to display
+            // Display tasks
             $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($tasks) {
                 echo "<ul>";
@@ -36,14 +36,13 @@
                 }
                 echo "</ul>";
             } else {
-                echo "No tasks found that are not completed.";
+                echo "No done tasks.";
             }
         } catch (PDOException $e) {
-            echo "Error fetching tasks: " . $e->getMessage();
+            echo "Error fetching: " . $e->getMessage();
         }
         ?>
     </div>
 
 </body>
 </html>
-

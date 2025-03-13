@@ -5,30 +5,30 @@ class TasksController {
     private $conn;
 
     public function __construct() {
-        // Include database configuration
+        // Database configuratie
         require_once '../backend/config.php';
 
         try {
             $this->conn = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            echo "Database connection failed: " . $e->getMessage();
+            echo "Databaseverbinding mislukt: " . $e->getMessage();
         }
     }
 
     public function createTask($data) {
-        // Input validation
+        // Invoer validatie
         $titel = htmlspecialchars($data['titel']);
         $beschrijving = htmlspecialchars($data['beschrijving']);
         $afdeling = htmlspecialchars($data['afdeling']);
 
         if (empty($titel) || empty($beschrijving) || empty($afdeling)) {
-            echo "<p>All fields are required!</p>";
+            echo "<p>Alle velden zijn vereist!</p>";
             return;
         }
 
         try {
-            // Insert task into database
+            // Voeg taak toe aan de database
             $stmt = $this->conn->prepare("INSERT INTO taken (titel, beschrijving, afdeling, status, created_at) 
                                          VALUES (:titel, :beschrijving, :afdeling, 'todo', NOW())");
 
@@ -36,15 +36,16 @@ class TasksController {
             $stmt->bindParam(':beschrijving', $beschrijving);
             $stmt->bindParam(':afdeling', $afdeling);
 
-            // Execute the statement
+            // Voer de statement uit
             $stmt->execute();
 
-            echo "<p>Task added successfully!</p>";
+            echo "<p>Taak succesvol toegevoegd!</p>";
 
         } catch (PDOException $e) {
-            echo "Error creating task: " . $e->getMessage();
+            echo "Fout bij het maken van de taak: " . $e->getMessage();
         }
     }
 }
 
 ?>
+
