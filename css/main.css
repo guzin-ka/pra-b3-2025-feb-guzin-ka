@@ -287,4 +287,76 @@ label{
     page-break-after: avoid;
   }
 }
+header, img {
+  padding: 25px;
+}
+header {
+  background-color: rgb(231, 231, 231);
+  z-index: -2;
+}
+body {
+  z-index: 2;
+}
+nav{
+  display: flex;
+  justify-content: space-evenly;
+}
+.taskList {
+  width: 300px;
+  height: 200px;
+  display: grid;
+  justify-content: start;
+}
+#new-task {
+  background-color: #4486D1;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+}
+#new-task:hover {
+  background-color:  #235083;
+  color: whitesmoke;
+}
+#completed-tasks {
+  background-color: #85AC9B;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+}
+#completed-tasks:hover {
+  background-color:  #426254;
+  color: whitesmoke;
+}
+#not-done-tasks {
+  background-color: #4486D1;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+}
+#not-done-tasks:hover {
+  background-color:  #235083;
+  color: whitesmoke;
+}
+.form-group{
+  margin: 1rem 0;
+}
 
+label{
+  cursor: pointer;
+  display: inline-block;
+  min-width: 140px;
+  vertical-align: top;
+}
+
+.form-input{
+  width: 600px;
+}

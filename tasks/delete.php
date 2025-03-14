@@ -2,9 +2,14 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Task</title>
     <?php require_once 'head.php'; ?>
 </head>
+
+<body>
+
 <header>
     <nav>
         <div class="taskList">
@@ -13,28 +18,27 @@
             <a href="notDone.php" id="not-done-tasks" style="padding: 5px; text-decoration: none;">Not Done Tasks</a>
         </div>
         <h1>Welkom bij DeveloperLand!</h1>
-        <img src="logo-big-v3.png" width="200" height="200">
+        <img src="logo-big-v3.png" width="200" height="200" alt="DeveloperLand Logo">
     </nav>
 </header>
 
-<body>
-    
+<main>
     <div class="container">
         <h1>Maak een nieuwe taak:</h1>
-        
+
         <form action="create.php" method="POST">
             <div class="form-group">
                 <label for="titel">Taak:</label>
                 <input type="text" id="titel" name="titel" required class="form-control">
             </div>
             <div class="form-group">
-                <label for="beschrijving">Beschrijving</label>
+                <label for="beschrijving">Beschrijving:</label>
                 <textarea id="beschrijving" name="beschrijving" required class="form-control"></textarea>
             </div>
             <div class="form-group">
-                <label for="afdeling">Afdeling</label>
+                <label for="afdeling">Afdeling:</label>
                 <select id="afdeling" name="afdeling" required class="form-control">
-                    <option value="ongeselecteerd">ongeselecteerd</option>
+                    <option value="ongeselecteerd">Ongeselecteerd</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -54,8 +58,7 @@
         }
         ?>
     </div>
+</main>
 
 </body>
 </html>
-
-
