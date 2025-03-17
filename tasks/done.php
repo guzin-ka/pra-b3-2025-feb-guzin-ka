@@ -3,15 +3,26 @@
 
 <head>
     <title>Task Overview</title>
-    <?php require_once '../head.php'; ?>
+    <?php require_once 'head.php'; ?>
 </head>
+<header>
+    <nav>
+        <div class="taskList">
+            <a href="create.php" id="new-task" style="padding: 5px; width: 150px; text-decoration: none;">New Task</a>
+            <a href="index.php" id="completed-tasks" style="padding: 5px; text-decoration: none;">HOME</a>
+            <a href="notDone.php" id="not-done-tasks" style="padding: 5px; text-decoration: none;">Not Done Tasks</a>
+        </div>
+        <h1>Welkom bij DeveloperLand!</h1>
+        <img src="logo-big-v3.png" width="200" height="200">
+    </nav>
+</header>
 
 <body>
     
     <div class="container">
-        <h1>Done Tasks</h1>
+        <h1>Klaar lijst</h1>
         
-        <a href="index.php">Back to task list</a>
+        <a href="index.php">Terug naar lijst</a>
 
         <?php
         // Database configuration

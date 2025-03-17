@@ -3,35 +3,46 @@
 
 <head>
     <title>New Task</title>
-    <?php require_once '../head.php'; ?>
+    <?php require_once 'head.php'; ?>
 </head>
+<header>
+    <nav>
+        <div class="taskList">
+            <a href="index.php" id="new-task" style="padding: 5px; width: 150px; text-decoration: none;">HOME</a>
+            <a href="done.php" id="completed-tasks" style="padding: 5px; text-decoration: none;">Completed Tasks</a>
+            <a href="notDone.php" id="not-done-tasks" style="padding: 5px; text-decoration: none;">Not Done Tasks</a>
+        </div>
+        <h1>Welkom bij DeveloperLand!</h1>
+        <img src="logo-big-v3.png" width="200" height="200">
+    </nav>
+</header>
 
 <body>
     
     <div class="container">
-        <h1>New Task</h1>
+        <h1>Maak een nieuwe taak:</h1>
         
         <form action="create.php" method="POST">
             <div class="form-group">
-                <label for="titel">Title</label>
+                <label for="titel">Taak:</label>
                 <input type="text" id="titel" name="titel" required class="form-control">
             </div>
             <div class="form-group">
-                <label for="beschrijving">Description</label>
+                <label for="beschrijving">Beschrijving</label>
                 <textarea id="beschrijving" name="beschrijving" required class="form-control"></textarea>
             </div>
             <div class="form-group">
-                <label for="afdeling">Department</label>
+                <label for="afdeling">Afdeling</label>
                 <select id="afdeling" name="afdeling" required class="form-control">
-                    <option value="personnel">Personnel</option>
-                    <option value="hospitality">Hospitality</option>
-                    <option value="technology">Technology</option>
-                    <option value="procurement">Procurement</option>
-                    <option value="customer_service">Customer Service</option>
-                    <option value="green">Green</option>
+                    <option value="ongeselecteerd">ongeselecteerd</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
             </div>
-            <button type="submit" name="submit" class="btn btn-primary">Add</button>
+            <button type="submit" name="submit" class="btn btn-primary">Verzend</button>
         </form>
 
         <?php
