@@ -1,31 +1,12 @@
 /*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
 
 /* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
 
 html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
 }
-
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Vendor-prefixed and regular ::selection selectors cannot be combined:
- * https://stackoverflow.com/a/16982510/7133471
- *
- * Customize the background color to match your design.
- */
 
 ::-moz-selection {
   background: #b3d4fc;
@@ -37,10 +18,6 @@ html {
   text-shadow: none;
 }
 
-/*
- * A better looking default horizontal rule
- */
-
 hr {
   display: block;
   height: 1px;
@@ -50,24 +27,9 @@ hr {
   padding: 0;
 }
 
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
+audio, canvas, iframe, img, svg, video {
   vertical-align: middle;
 }
-
-/*
- * Remove default fieldset styles.
- */
 
 fieldset {
   border: 0;
@@ -75,66 +37,46 @@ fieldset {
   padding: 0;
 }
 
-/*
- * Allow only vertical resizing of textareas.
- */
-
 textarea {
   resize: vertical;
 }
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-html{
-    font-size: 16px;
+html {
+  font-size: 16px;
 }
 
-.container{
-    max-width: 1024px;
-    margin: 0 auto;
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.form-group{
-    margin: 1rem 0;
+.form-group {
+  margin: 1rem 0;
 }
 
-label{
-    cursor: pointer;
-    display: inline-block;
-    min-width: 140px;
-    vertical-align: top;
+label {
+  cursor: pointer;
+  display: inline-block;
+  min-width: 140px;
+  vertical-align: top;
+  font-weight: bold;
 }
 
-.form-input{
-    width: 600px;
+.form-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-
-
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
-
-.hidden,
-[hidden] {
+.hidden, [hidden] {
   display: none !important;
 }
-
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
 
 .sr-only {
   border: 0;
@@ -146,14 +88,7 @@ label{
   position: absolute;
   white-space: nowrap;
   width: 1px;
-  /* 1 */
 }
-
-/*
- * Extends the .sr-only class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
 
 .sr-only.focusable:active,
 .sr-only.focusable:focus {
@@ -166,28 +101,11 @@ label{
   width: auto;
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
 .invisible {
   visibility: hidden;
 }
 
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
-
-.clearfix::before,
-.clearfix::after {
+.clearfix::before, .clearfix::after {
   content: " ";
   display: table;
 }
@@ -196,42 +114,15 @@ label{
   clear: both;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-
 @media print {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     background: #fff !important;
     color: #000 !important;
-    /* Black prints faster */
     box-shadow: none !important;
     text-shadow: none !important;
   }
 
-  a,
-  a:visited {
+  a, a:visited {
     text-decoration: underline;
   }
 
@@ -243,10 +134,6 @@ label{
     content: " (" attr(title) ")";
   }
 
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
   a[href^="#"]::after,
   a[href^="javascript:"]::after {
     content: "";
@@ -256,58 +143,59 @@ label{
     white-space: pre-wrap !important;
   }
 
-  pre,
-  blockquote {
+  pre, blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
 
-  /*
-   * Printing Tables:
-   * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
-   */
   thead {
     display: table-header-group;
   }
 
-  tr,
-  img {
+  tr, img {
     page-break-inside: avoid;
   }
 
-  p,
-  h2,
-  h3 {
+  p, h2, h3 {
     orphans: 3;
     widows: 3;
   }
 
-  h2,
-  h3 {
+  h2, h3 {
     page-break-after: avoid;
   }
 }
+
 header, img {
   padding: 25px;
 }
+
 header {
   background-color: rgb(231, 231, 231);
   z-index: -2;
 }
+
 body {
   z-index: 2;
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
-nav{
+
+nav {
   display: flex;
   justify-content: space-evenly;
 }
+
 .taskList {
   width: 300px;
-  height: 200px;
+  height: auto;
   display: grid;
   justify-content: start;
 }
-#new-task {
+
+#tasks {
   background-color: #4486D1;
   border-radius: 20px;
   margin-bottom: 10px;
@@ -315,48 +203,27 @@ nav{
   align-items: center;
   color: white;
   font-size: 20px;
-}
-#new-task:hover {
-  background-color:  #235083;
-  color: whitesmoke;
-}
-#completed-tasks {
-  background-color: #85AC9B;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  text-align: center;
-  align-items: center;
-  color: white;
-  font-size: 20px;
-}
-#completed-tasks:hover {
-  background-color:  #426254;
-  color: whitesmoke;
-}
-#not-done-tasks {
-  background-color: #4486D1;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  text-align: center;
-  align-items: center;
-  color: white;
-  font-size: 20px;
-}
-#not-done-tasks:hover {
-  background-color:  #235083;
-  color: whitesmoke;
-}
-.form-group{
-  margin: 1rem 0;
+  padding: 20px;
 }
 
-label{
+#tasks:hover {
+  background-color: #235083;
+  color: whitesmoke;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #4486D1;
+  color: white;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  display: inline-block;
-  min-width: 140px;
-  vertical-align: top;
+  font-size: 16px;
 }
 
-.form-input{
-  width: 600px;
+button:hover {
+  background-color: #235083;
 }
