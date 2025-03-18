@@ -5,9 +5,7 @@
 
     <!-- Main Content Section -->
     <div class="container">
-        <h1>Afmaken lijst</h1>
-        
-        <a href="index.php">Terug naar lijst</a>
+        <h1>not done tasks</h1>
 
         <?php
         // Database configuration
@@ -26,14 +24,12 @@
             if ($tasks) {
                 echo "<ul>";
                 foreach ($tasks as $task) {
-                    echo "<li><strong>" . htmlspecialchars($task['titel']) . "</strong><br>
-                          Department: " . htmlspecialchars($task['afdeling']) . "<br>
+                    echo "<li><strong>" . htmlspecialchars($task['title']) . "</strong><br>
+                          Department: " . htmlspecialchars($task['department']) . "<br>
                           Status: " . htmlspecialchars($task['status']) . "</li><br>";
                 }
                 echo "</ul>";
-            } else {
-                echo "No not done tasks.";
-            }
+            } 
         } catch (PDOException $e) {
             echo "Error fetching: " . $e->getMessage();
         }

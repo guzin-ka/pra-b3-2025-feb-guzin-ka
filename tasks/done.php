@@ -1,25 +1,11 @@
 <?php require_once 'head.php'; ?>
-
 <body>
-    <header>
-        <nav>
-            <div class="taskList">
-                <a href="create.php" id="new-task" class="task-link">Create New Task</a>
-                <a href="done.php" id="completed-tasks" class="task-link">Completed Tasks</a>
-                <a href="index.php" id="not-done-tasks" class="task-link">Home</a>
-                <a href="edit.php" id="edit-task" class="task-link">Edit Task</a>
-                <a href="delete.php" id="delete-task" class="task-link">Delete Task</a>
-                <a href="filter.php" id="filter-tasks" class="task-link">Filter Tasks</a>
-            </div>
-            <h1>Welkom bij DeveloperLand!</h1>
-            <img src="logo-big-v3.png" width="200" height="200">
-        </nav>
-    </header>
+    <!-- Header Section -->
+    <?php require_once 'header.php'; ?>
 
+    <!-- Main Content Section -->
     <div class="container">
-        <h1>Klaar lijst</h1>
-        
-        <a href="index.php">Terug naar lijst</a>
+        <h1>done tasks</h1>
 
         <?php
         // Database configuration
@@ -29,8 +15,8 @@
             $conn = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            // Fetch done tasks
-            $stmt = $conn->prepare("SELECT * FROM taken WHERE status = 'done'");
+            // Fetch tasks
+            $stmt = $conn->prepare("SELECT * FROM taken WHERE status <> 'notdone'");
             $stmt->execute();
             
             // Display tasks
@@ -38,18 +24,17 @@
             if ($tasks) {
                 echo "<ul>";
                 foreach ($tasks as $task) {
-                    echo "<li><strong>" . htmlspecialchars($task['titel']) . "</strong><br>
-                          Department: " . htmlspecialchars($task['afdeling']) . "<br>
+                    echo "<li><strong>" . htmlspecialchars($task['title']) . "</strong><br>
+                          Department: " . htmlspecialchars($task['department']) . "<br>
                           Status: " . htmlspecialchars($task['status']) . "</li><br>";
                 }
                 echo "</ul>";
-            } else {
-                echo "No done tasks.";
-            }
+            } 
         } catch (PDOException $e) {
             echo "Error fetching: " . $e->getMessage();
         }
         ?>
     </div>
+
 </body>
 </html>
