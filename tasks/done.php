@@ -1,24 +1,21 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Task Overview</title>
-    <?php require_once 'head.php'; ?>
-</head>
-<header>
-    <nav>
-        <div class="taskList">
-            <a href="create.php" id="new-task" style="padding: 5px; width: 150px; text-decoration: none;">New Task</a>
-            <a href="index.php" id="completed-tasks" style="padding: 5px; text-decoration: none;">HOME</a>
-            <a href="notDone.php" id="not-done-tasks" style="padding: 5px; text-decoration: none;">Not Done Tasks</a>
-        </div>
-        <h1>Welkom bij DeveloperLand!</h1>
-        <img src="logo-big-v3.png" width="200" height="200">
-    </nav>
-</header>
+<?php require_once 'head.php'; ?>
 
 <body>
-    
+    <header>
+        <nav>
+            <div class="taskList">
+                <a href="create.php" id="new-task" class="task-link">Create New Task</a>
+                <a href="done.php" id="completed-tasks" class="task-link">Completed Tasks</a>
+                <a href="index.php" id="not-done-tasks" class="task-link">Home</a>
+                <a href="edit.php" id="edit-task" class="task-link">Edit Task</a>
+                <a href="delete.php" id="delete-task" class="task-link">Delete Task</a>
+                <a href="filter.php" id="filter-tasks" class="task-link">Filter Tasks</a>
+            </div>
+            <h1>Welkom bij DeveloperLand!</h1>
+            <img src="logo-big-v3.png" width="200" height="200">
+        </nav>
+    </header>
+
     <div class="container">
         <h1>Klaar lijst</h1>
         
@@ -32,7 +29,7 @@
             $conn = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            // Fetch tasks
+            // Fetch done tasks
             $stmt = $conn->prepare("SELECT * FROM taken WHERE status = 'done'");
             $stmt->execute();
             
@@ -54,6 +51,5 @@
         }
         ?>
     </div>
-
 </body>
 </html>

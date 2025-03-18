@@ -1,24 +1,9 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Task Overview</title>
-    <?php require_once 'head.php'; ?>
-</head>
-<header>
-    <nav>
-        <div class="taskList">
-            <a href="create.php" id="new-task" style="padding: 5px; width: 150px; text-decoration: none;">New Task</a>
-            <a href="done.php" id="completed-tasks" style="padding: 5px; text-decoration: none;">Completed Tasks</a>
-            <a href="index.php" id="not-done-tasks" style="padding: 5px; text-decoration: none;">HOME</a>
-        </div>
-        <h1>Welkom bij DeveloperLand!</h1>
-        <img src="logo-big-v3.png" width="200" height="200">
-    </nav>
-</header>
-
+<?php require_once 'head.php'; ?>
 <body>
-    
+    <!-- Header Section -->
+    <?php require_once 'header.php'; ?>
+
+    <!-- Main Content Section -->
     <div class="container">
         <h1>Afmaken lijst</h1>
         
