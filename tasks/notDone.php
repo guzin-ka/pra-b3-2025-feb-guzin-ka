@@ -1,3 +1,18 @@
+<?php
+// Beveiligde pagina
+session_start();
+
+// Controleer of de gebruiker ingelogd is
+if (!isset($_SESSION['user_id'])) {
+    // Gebruiker is niet ingelogd, doorsturen naar de inlogpagina
+    header("Location: login.php");
+    exit();
+}
+
+// De rest van je pagina-code voor ingelogde gebruikers
+?>
+
+
 <?php require_once 'head.php'; ?>
 <body>
     <!-- Header Section -->
