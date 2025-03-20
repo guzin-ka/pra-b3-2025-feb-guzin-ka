@@ -1,21 +1,19 @@
 <?php
-// Include the TasksController class
-require_once 'TasksController.php';  // Adjust the path accordingly
 
-// Create task logic
+require_once 'TasksController.php';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
     $data = [
         'title' => $_POST['title'],
         'description' => $_POST['description'],
         'department' => $_POST['department'],
-        'deadline' => $_POST['deadline'] ?? null,  // Default to null if no deadline is provided
+        'deadline' => $_POST['deadline'] ?? null, 
     ];
 
     $taskController = new TasksController();
     $taskController->createTask($data);
 }
 
-// Update task logic
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $data = [
         'title' => $_POST['title'],
@@ -23,15 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
         'department' => $_POST['department'],
         'deadline' => $_POST['deadline'] ?? null,
     ];
-    $taskId = $_POST['task_id']; // Assuming a hidden input field with task ID is provided
+    $taskId = $_POST['task_id']; 
 
     $taskController = new TasksController();
     $taskController->updateTask($data, $taskId);
 }
 
-// Delete task logic
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
-    $taskId = $_POST['task_id']; // Assuming a hidden input field with task ID is provided
+    $taskId = $_POST['task_id']; 
 
     $taskController = new TasksController();
     $taskController->deleteTask($taskId);
@@ -42,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
 <body>
     <?php require_once 'header.php'; ?>
 
-    <!-- Create Task Form -->
     <div class="container">
         <h1>Create New Task</h1>
         <form action="edit.php" method="POST">
@@ -55,6 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
             <label for="department">Department:</label>
             <input type="text" id="department" name="department" required>
 
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+                <option value="todo">todo</option>
+                <option value="done">done</option>
+                <option value="review">Review</option>
+            </select>
+
             <label for="deadline">Deadline:</label>
             <input type="date" id="deadline" name="deadline">
 
@@ -62,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
         </form>
     </div>
 
-    <!-- Update Task Form -->
     <div class="container">
         <h1>Update Task</h1>
         <form action="edit.php" method="POST">
@@ -78,6 +81,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
             <label for="department">Department:</label>
             <input type="text" id="department" name="department" required>
 
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+                <option value="todo">todo</option>
+                <option value="done">done</option>
+                <option value="review">Review</option>
+            </select>
+
             <label for="deadline">Deadline:</label>
             <input type="date" id="deadline" name="deadline">
 
@@ -85,7 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
         </form>
     </div>
 
-    <!-- Delete Task Form -->
     <div class="container">
         <h1>Delete Task</h1>
         <form action="edit.php" method="POST">
@@ -97,7 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
     </div>
 
     <?php
-        // Display success message if the task was created, updated, or deleted
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<p>Action was successful!</p>";
         }

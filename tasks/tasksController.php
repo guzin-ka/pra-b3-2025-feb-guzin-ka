@@ -1,8 +1,11 @@
 <?php
-class TasksController {
+
+class TasksController
+{
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         // Database configuration
         require_once '../backend/config.php';
 
@@ -10,101 +13,95 @@ class TasksController {
             $this->conn = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            echo "Database connection failed: " . $e->getMessage();
+            throw new RuntimeException("Database connection failed: " . $e->getMessage(), 0, $e);
         }
     }
 
     // Add task
-    public function createTask($data) {
-        // Input validation
-        $title = htmlspecialchars($data['title']);
-        $description = htmlspecialchars($data['description']);
-        $department = htmlspecialchars($data['department']);
-        $deadline = htmlspecialchars($data['deadline']); // Get deadline
+    public function createTask(array $data)
+    {
+        $title = $this->validateString($data['title']);
+        $description = $this->validateString($data['description']);
+        $department = $this->validateString($data['department']);
+        $status = isset($data['status']) ? $this->validateString($data['status']) : 'todo';  // Default value 'todo'
+        $deadline = $this->validateString($data['deadline']);
 
         if (empty($title) || empty($description) || empty($department)) {
-            echo "<p>All fields are required!</p>";
-            return;
+            throw new InvalidArgumentException("All fields are required!");
         }
 
         try {
-            // Add task to database
             $stmt = $this->conn->prepare("INSERT INTO taken (title, description, department, status, created_at, deadline)
                                           VALUES (:title, :description, :department, 'todo', NOW(), :deadline)");
 
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':description', $description);
             $stmt->bindParam(':department', $department);
-            $stmt->bindParam(':deadline', $deadline); // Bind the deadline
+            $stmt->bindParam(':status', $status);
+            $stmt->bindParam(':deadline', $deadline);
 
-            // Execute the statement
             $stmt->execute();
-
-            echo "<p>Task added successfully!</p>";
         } catch (PDOException $e) {
-            echo "Error creating task: " . $e->getMessage();
+            throw new RuntimeException("Error creating task: " . $e->getMessage(), 0, $e);
         }
     }
 
     // Update task
-    public function updateTask($data, $id) {
-        // Input validation
-        $title = htmlspecialchars($data['title']);
-        $description = htmlspecialchars($data['description']);
-        $department = htmlspecialchars($data['department']);
-        $deadline = htmlspecialchars($data['deadline']); // Get the deadline
+    public function updateTask(array $data, int $id)
+    {
+        $title = $this->validateString($data['title']);
+        $description = $this->validateString($data['description']);
+        $department = $this->validateString($data['department']);
+        $status = isset($data['status']) ? $this->validateString($data['status']) : 'todo';  // Default value 'todo'
+        $deadline = $this->validateString($data['deadline']);
 
         if (empty($title) || empty($description) || empty($department)) {
-            echo "<p>All fields are required!</p>";
-            return;
+            throw new InvalidArgumentException("All fields are required!");
         }
 
         try {
-            // Update the task in the database
-            $stmt = $this->conn->prepare("UPDATE taken SET title = :title, description = :description, department = :department, deadline = :deadline WHERE id = :id");
+            $stmt = $this->conn->prepare("UPDATE taken SET title = :title, description = :description, department = :department, status = :status, deadline = :deadline WHERE id = :id");
 
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':description', $description);
             $stmt->bindParam(':department', $department);
+            $stmt->bindParam(':status', $status);
             $stmt->bindParam(':deadline', $deadline);
             $stmt->bindParam(':id', $id);
 
-            // Execute the statement
             $stmt->execute();
-
-            echo "<p>Task updated successfully!</p>";
         } catch (PDOException $e) {
-            echo "Error updating task: " . $e->getMessage();
+            throw new RuntimeException("Error updating task: " . $e->getMessage(), 0, $e);
         }
     }
 
     // Delete task
-    public function deleteTask($id) {
+    public function deleteTask(int $id)
+    {
         try {
-            // Delete task from the database
             $stmt = $this->conn->prepare("DELETE FROM taken WHERE id = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
-
-            echo "<p>Task successfully deleted!</p>";
         } catch (PDOException $e) {
-            echo "Error deleting task: " . $e->getMessage();
+            throw new RuntimeException("Error deleting task: " . $e->getMessage(), 0, $e);
         }
     }
 
     // Fetch all tasks
-    public function getTasks() {
+    public function getTasks()
+    {
         try {
-            // Fetch all tasks from the database
             $stmt = $this->conn->prepare("SELECT * FROM taken");
             $stmt->execute();
 
-            // Fetch the results as an associative array
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            echo "Error fetching tasks: " . $e->getMessage();
-            return [];
+            throw new RuntimeException("Error fetching tasks: " . $e->getMessage(), 0, $e);
         }
     }
+
+    private function validateString(string $input)
+    {
+        return htmlspecialchars($input, ENT_QUOTES);
+    }
 }
-?>
