@@ -5,7 +5,7 @@
 
     <!-- Main Content Section -->
     <div class="container">
-        <h1>not done tasks</h1>
+        <h1>Not Done Tasks</h1>
 
         <?php
         // Database configuration
@@ -15,8 +15,8 @@
             $conn = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            // Fetch tasks
-            $stmt = $conn->prepare("SELECT * FROM taken WHERE status <> 'done'");
+            // Fetch tasks where the status is 'todo'
+            $stmt = $conn->prepare("SELECT * FROM taken WHERE STATUS = 'todo'");
             $stmt->execute();
             
             // Display tasks
@@ -24,14 +24,23 @@
             if ($tasks) {
                 echo "<ul>";
                 foreach ($tasks as $task) {
-                    echo "<li><strong>" . htmlspecialchars($task['title']) . "</strong><br>
-                          Department: " . htmlspecialchars($task['department']) . "<br>
-                          Status: " . htmlspecialchars($task['status']) . "</li><br>";
+                    // Ensure we don't pass null to htmlspecialchars
+                    $title = htmlspecialchars($task['title'] ?? 'N/A');
+                    $department = htmlspecialchars($task['department'] ?? 'N/A');
+                    $status = htmlspecialchars($task['status'] ?? 'N/A');
+                    $deadline = htmlspecialchars($task['deadline'] ?? 'N/A');
+
+                    echo "<li><strong>$title</strong><br>
+                          Department: $department<br>
+                          Status: $status<br>
+                          Deadline: $deadline</li><br>";
                 }
                 echo "</ul>";
-            } 
+            } else {
+                echo "<p>No tasks are pending or in progress.</p>";
+            }
         } catch (PDOException $e) {
-            echo "Error fetching: " . $e->getMessage();
+            echo "Error fetching tasks: " . $e->getMessage();
         }
         ?>
     </div>
