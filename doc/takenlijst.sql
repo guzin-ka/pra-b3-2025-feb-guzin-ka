@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `users` (`naam`, `username`, `password`) VALUES ('Testgebruiker 1', 'user1', 'user1');
-INSERT INTO `users` (`naam`, `username`, `password`) VALUES ('Testgebruiker 2', 'user2', 'user2.');
-INSERT INTO `users` (`naam`, `username`, `password`) VALUES ('Testgebruiker 3', 'user3', 'user3');
+INSERT INTO `users` (`naam`, `username`, `password`) VALUES ('Testgebruiker 1', 'user1', '$2y$10$dney7W3gZKvIZX6xscc/Fee6YZzK1C7I0J3Jlvynl8B3ghkUyYLZC');
+INSERT INTO `users` (`naam`, `username`, `password`) VALUES ('Testgebruiker 2', 'user2', '$2y$10$puA.IK4jf86bVpQou1dKdO7Fb8muTJXYVYGP5r6R5rop9ldFGKOju');
+INSERT INTO `users` (`naam`, `username`, `password`) VALUES ('Testgebruiker 3', 'user3', '$2y$10$nkOL/ykmSjJCHXiG48RA9OkJyCWCxMWomzTGncyjOchQO0HioM.Ei');
 takentaken
