@@ -14,5 +14,12 @@
         
         <input type="submit" value="Login">
     </form>
+
+    <!-- Display any message if present in the URL query string -->
+    <?php 
+    if (isset($_GET['message'])) {
+        echo "<p style='color: green;'>" . htmlspecialchars($_GET['message']) . "</p>";
+    }
+    ?>
 </body>
 </html>
